@@ -10,7 +10,7 @@ const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && user[authSettings.rolesKey].length === 0) {
+    if (user && user[authSettings.rolesKey]?.length === 0) {
       navigate("/");
     }
   }, [user]);
