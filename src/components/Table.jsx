@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTable } from "react-table";
+import Button from "./Button";
 
 const Table = ({ data, columns, noHref }) => {
   const navigate = useNavigate();
@@ -13,12 +14,12 @@ const Table = ({ data, columns, noHref }) => {
     });
 
   const handleRowClick = (index) => {
-    if (!noHref) navigate(`/books/${index}`, { queryParams: { id: index } });
+    if (!noHref) navigate(`/causes/${index}`, { queryParams: { id: index } });
   };
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
+    <table className="content-table" {...getTableProps()} >
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -30,6 +31,7 @@ const Table = ({ data, columns, noHref }) => {
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
+            
           prepareRow(row);
           return (
             <tr
@@ -38,7 +40,7 @@ const Table = ({ data, columns, noHref }) => {
               onClick={() => handleRowClick(i)}
             >
               {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return <td {...cell.getCellProps()}> {cell.column.id === "actions" ? <Button>Edit</Button> : cell.render("Cell")}</td>
               })}
             </tr>
           );

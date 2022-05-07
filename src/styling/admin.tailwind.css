@@ -25,11 +25,12 @@
 }
 
 .nav-link {
-    @apply h-12 pl-4 rounded-[10px] flex items-center font-semibold gap-2 opacity-50 text-lg;
+    @apply h-12 pl-4 rounded-[10px] flex items-center font-semibold gap-2 text-lg;
 }
 
 .active {
-    @apply text-white bg-black opacity-100;
+   background-color: #28666e;
+   color: #ffffff;
 }
 
 
