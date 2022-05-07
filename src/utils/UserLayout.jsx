@@ -10,7 +10,7 @@ const UserLayout = ({ children }) => {
 
   useEffect(() => {
     if (user && user[authSettings.rolesKey].length === 1) {
-      navigate("/books");
+      navigate("/causes");
     }
   }, [user]);
 
