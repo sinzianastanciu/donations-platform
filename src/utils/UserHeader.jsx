@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import "../styling/admin.tailwind.css";
 import Avatar from "react-avatar";
 import { useAuth0 } from "@auth0/auth0-react";
 

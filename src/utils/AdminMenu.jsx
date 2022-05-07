@@ -29,8 +29,6 @@ const AdminMenu = () => {
       <div className="logo-container">
         <img src={logo} alt="Donations platform logo" />
       </div>
-      <nav className="admin-nav">
-      </nav>
     </div>
   );
 };

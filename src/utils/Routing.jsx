@@ -1,10 +1,3 @@
-
-// import Donations from "../pages/user/Donations";
-// import Account from "../pages/user/Account";
-// import Causes from "../pages/admin/Causes";
-// import Cause from "../pages/admin/Cause";
-
-
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Donations from "../pages/user/Donations";
