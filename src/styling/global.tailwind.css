@@ -81,7 +81,11 @@ thead>tr {
 /* button */
 
 .button {
-    @apply flex w-fit items-center justify-center gap-2 px-4 py-2 text-lg font-semibold text-white rounded-full bg-purple-secondary;
+    @apply flex w-fit items-center justify-center gap-2 px-4 py-2 text-lg font-semibold text-white;
+    background-color: #E17358;
+    border-radius: 12px;
+    width: 125px;
+    float: right
 }
 
 .button:disabled {
