@@ -5,7 +5,7 @@ const Input = (props) => {
     return (
         <label>
             {contentLabel && <span>{contentLabel}</span>}
-            <input {...rest} type={contentLabel=="Password" ? "password" : "text"} className='input'></input>
+            <input {...rest} type={contentLabel==="Password" ? "password" : "text"} className='input'></input>
         </label>
     );
 };
