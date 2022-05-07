@@ -4,27 +4,23 @@
 
 /* scrollbar settings */
 
-
 /* width */
 
 ::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
-
 
 /* Track */
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
-
 
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-    @apply rounded-xl;
+  @apply rounded-xl;
 }
-
 
 /* Handle on hover */
 
@@ -32,24 +28,22 @@
     @apply
 } */
 
-
 /* text */
 
 p {
-    @apply text-base font-normal;
+  @apply text-base font-normal;
 }
 
 h2 {
-    @apply text-3xl font-extrabold;
+  @apply text-3xl font-extrabold;
 }
-
 
 /* table */
 
-table {
+/* table {
     @apply border-2 border-collapse border-none rounded-md border-purple-faded;
     box-shadow: 0 0 0 1px #3d29730d;
-    /* this draws the table border   */
+    
 }
 
 table tr:last-child td:first-child {
@@ -75,124 +69,160 @@ tr {
 
 thead>tr {
     @apply cursor-default;
+} */
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1.125rem;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
+.content-table thead tr {
+  background-color: #ddedde;
+  color: #000000;
+  text-align: left;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.content-table th {
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.content-table td {
+  padding: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
 
 /* button */
 
 .button {
-    @apply flex w-fit items-center justify-center gap-2 px-4 py-2 text-lg font-semibold text-white;
-    background-color: #E17358;
-    border-radius: 12px;
-    width: 125px;
-    float: right
+  @apply flex w-fit items-center justify-center gap-2 px-4 py-2 text-lg font-semibold text-white;
+  background-color: #e17358;
+  border-radius: 12px;
+  width: 125px;
+  float: right;
 }
 
 .button:disabled {
-    @apply bg-gray;
+  @apply bg-gray;
 }
 
 .button svg {
-    @apply h-4 w-4;
+  @apply h-4 w-4;
 }
 
 .icon-button {
-    @apply text-black bg-transparent stroke-2;
+  @apply text-black bg-transparent stroke-2;
 }
 
-.icon-button>svg {
-    @apply text-black bg-transparent stroke-black h-7 w-7;
+.icon-button > svg {
+  @apply text-black bg-transparent stroke-black h-7 w-7;
 }
-
 
 /* inputs */
 
 label {
-    @apply font-semibold text-sm;
+  @apply font-semibold text-sm;
 }
 
 .input {
-    @apply w-full px-4 py-3 border-2 rounded-lg outline-none border-gray text-base font-semibold;
+  @apply w-full px-4 py-3 border-2 rounded-lg outline-none border-gray text-base font-semibold;
 }
 
 .input:focus {
-    @apply border-purple-secondary;
+  @apply border-purple-secondary;
 }
-
 
 /* keywords */
 
 .keyword-list {
-    @apply flex items-center gap-3;
+  @apply flex items-center gap-3;
 }
 
-.keyword-list>span {
-    @apply p-4 rounded-3xl bg-purple text-white font-semibold text-sm;
+.keyword-list > span {
+  @apply p-4 rounded-3xl bg-purple text-white font-semibold text-sm;
 }
-
 
 /* modal */
 
 .ReactModal__Overlay,
 .ReactModal__Overlay--after-open {
-    @apply flex justify-center items-center bg-gray-background !important;
+  @apply flex justify-center items-center bg-gray-background !important;
 }
 
 .modal {
-    @apply w-[465px] px-16 py-10 bg-white rounded-md;
+  @apply w-[465px] px-16 py-10 bg-white rounded-md;
 }
 
 .modal form {
-    @apply flex flex-col gap-5;
+  @apply flex flex-col gap-5;
 }
 
 .modal .line {
-    @apply h-[1px] bg-black my-7 opacity-10 rounded-md;
+  @apply h-[1px] bg-black my-7 opacity-10 rounded-md;
 }
 
-.modal>form>button {
-    @apply mt-5 w-full bg-purple-secondary;
+.modal > form > button {
+  @apply mt-5 w-full;
+  background-color: #e17358;
 }
 
 .row-center {
-    @apply flex flex-row items-center justify-center gap-3;
+  @apply flex flex-row items-center justify-center gap-3;
 }
 
 .delete-button {
-    @apply bg-red;
+  @apply bg-red;
 }
-
 
 /* special info section */
 
 .section-container {
-    @apply bg-white font-semibold text-lg flex flex-col gap-5 w-auto m-[1px];
+  @apply bg-white font-semibold text-lg flex flex-col gap-5 w-auto m-[1px];
 }
 
 .section-title {
-    @apply font-semibold text-lg;
+  @apply font-semibold text-lg;
 }
 
 .section-container .fields {
-    @apply rounded-md p-6;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-    display: grid;
-    column-gap: 40px;
-    row-gap: 20px;
-    grid-template-columns: max-content max-content;
-    width: max-content;
+  @apply rounded-md p-6;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  display: grid;
+  column-gap: 40px;
+  row-gap: 20px;
+  grid-template-columns: max-content max-content;
+  width: max-content;
 }
 
 .field-key {
-    @apply text-purple-secondary;
+  @apply text-purple-secondary;
 }
 
 .reading-card {
-    @apply flex flex-col gap-3 p-6 border-t-[5px] w-max rounded-md m-[1px];
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  @apply flex flex-col gap-3 p-6 border-t-[5px] w-max rounded-md m-[1px];
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .statistic-card {
-    @apply flex flex-col gap-3 p-10 border-t-[5px] border-purple-accent w-max rounded-md m-[1px];
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  @apply flex flex-col gap-3 p-10 border-t-[5px] border-purple-accent w-max rounded-md m-[1px];
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
