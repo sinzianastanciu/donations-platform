@@ -1,11 +1,10 @@
 import React from "react";
-import AdminHeader from "../../utils/AdminHeader";
-import AdminLayout from "../../utils/AdminLayout";
+import UserLayout from "../../utils/UserLayout";
 
 const Donations = () => {
     return (
         <div>
-            <AdminLayout/>
+            <UserLayout/>
         </div>
     );
 };

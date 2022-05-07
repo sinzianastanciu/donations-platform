@@ -1,9 +1,10 @@
 import React from "react";
+import AdminLayout from "../../utils/AdminLayout";
 
 const Causes = () => {
     return (
         <div>
-            <h1>Causes</h1>
+            <AdminLayout/>
         </div>
     );
 }
