@@ -148,17 +148,12 @@ label {
 }
 
 .input:focus {
-  @apply border-purple-secondary;
+  border-color:#28666E;
 }
 
-/* keywords */
-
-.keyword-list {
-  @apply flex items-center gap-3;
-}
-
-.keyword-list > span {
-  @apply p-4 rounded-3xl bg-purple text-white font-semibold text-sm;
+.text-details {
+  @apply text-[20px] font-semibold;
+  font-color:#28666E;
 }
 
 /* modal */
@@ -181,6 +176,30 @@ label {
 }
 
 .modal > form > button {
+  @apply mt-5 w-full;
+  background-color: #e17358;
+}
+
+/* donate modal */
+
+.ReactModal__Overlay,
+.ReactModal__Overlay--after-open {
+  @apply flex justify-center items-center bg-gray-background !important;
+}
+
+.donate-modal {
+  @apply w-[1000px] px-16 py-10 bg-white rounded-md;
+}
+
+.donate-modal form {
+  @apply flex flex-col gap-5;
+}
+
+.donate-modal .line {
+  @apply h-[1px] bg-black my-7 opacity-10 rounded-md;
+}
+
+.donate-modal > form > button {
   @apply mt-5 w-full;
   background-color: #e17358;
 }
@@ -226,3 +245,4 @@ label {
   @apply flex flex-col gap-3 p-10 border-t-[5px] border-purple-accent w-max rounded-md m-[1px];
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
+

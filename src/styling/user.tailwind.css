@@ -1,13 +1,13 @@
 /* layout */
 
-.user-layout {
+  .user-layout {
     @apply flex w-screen h-screen flex-col px-44;
-    
   }
   
   .user-content {
-    @apply flex flex-col overflow-y-auto gap-7 py-7;
-    
+    display: flex;
+    flex-direction: row;
+    /* @apply flex flex-row gap-7 py-7; */
   }
   
   .user-menu {
@@ -46,7 +46,7 @@
   
   .cause-card {
     @apply p-6 rounded-3xl flex flex-col gap-3 min-w-[300px];
-    width: 80%;
+    width: 1100px;
     margin-bottom: 50px;
     background-color: #DDEDDE;
     box-shadow: 5px 10px 5px #999999;
@@ -67,6 +67,7 @@
     margin-top: 10px;
     font-weight: bold;
   }
+
   .cause-details {
     flex-direction: row;
   }
@@ -78,8 +79,66 @@
   .cause-details-zone {
     @apply text-[20px] font-semibold;
   }
+  
+  .cause-content {
+    flex-direction: end;
+  }
 
-  .rented {
+  .cause-title {
+    @apply text-[40px] font-semibold;
+    text-align: center;
+  }
+
+  .cause-zone {
+    @apply text-[20px] font-semibold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .cause-summary {
+    text-align: justify;
+  }
+
+  .cause-image {
+      width: 50%;
+      height: 50%;
+      margin-left: 30px;
+      box-shadow: 5px 10px 5px #999999;
+      margin-top: 40px
+  }
+
+  .donate-btn {
+      margin-top: 50px;
+      width: 100%;
+      align-content: center;    
+  }
+
+  .donate-btn > Button {
+    width: 300px;
+    height: 50px
+  }
+  
+  .personal-data {
+    width: 120%;
+    margin-right: 30px;
+  }
+
+  .personal-data input {
+     margin-bottom: 10px;
+  }
+
+  .text-details {
+    margin-bottom:20px;
+  }
+  .payment input {
+    margin-bottom: 10px;
+  }
+
+  .modal-fields {
+    @apply flex flex-row;
+  }
+
+  /* .rented {
     box-shadow: 0px 0px 2px #999999;
   }
   
@@ -99,11 +158,8 @@
     @apply font-semibold text-sm;
   }
   
-  .title {
-    @apply text-[28px] font-semibold;
-  }
-  
+
   .keywords {
     @apply font-semibold text-sm opacity-50;
   }
-  
+   */
