@@ -40,37 +40,6 @@ h2 {
 
 /* table */
 
-/* table {
-    @apply border-2 border-collapse border-none rounded-md border-purple-faded;
-    box-shadow: 0 0 0 1px #3d29730d;
-    
-}
-
-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
-
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-}
-
-th,
-td {
-    @apply p-6 text-lg font-semibold text-left;
-}
-
-th {
-    @apply font-bold opacity-50;
-}
-
-tr {
-    @apply w-full border-b-2 cursor-pointer border-purple-faded;
-}
-
-thead>tr {
-    @apply cursor-default;
-} */
-
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -219,30 +188,27 @@ label {
 }
 
 .section-title {
-  @apply font-semibold text-lg;
+  font-weight: 600;
+  font-size: x-large;
 }
 
 .section-container .fields {
-  @apply rounded-md p-6;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 0.375rem;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   display: grid;
   column-gap: 40px;
   row-gap: 20px;
   grid-template-columns: max-content max-content;
   width: max-content;
+  background-color: #28666E;
 }
 
 .field-key {
-  @apply text-purple-secondary;
+  color: #ffffff;
 }
 
-.reading-card {
-  @apply flex flex-col gap-3 p-6 border-t-[5px] w-max rounded-md m-[1px];
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.statistic-card {
-  @apply flex flex-col gap-3 p-10 border-t-[5px] border-purple-accent w-max rounded-md m-[1px];
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+.field-value {
+  color: #ffffffbb;
 }
 

@@ -1,7 +1,7 @@
 /* layout */
 
   .user-layout {
-    @apply flex w-screen h-screen flex-col px-44;
+    @apply flex w-screen h-screen flex-col px-28;
   }
   
   .user-content {
@@ -12,6 +12,24 @@
   
   .user-menu {
     @apply flex flex-row justify-between items-center w-full py-8;
+  }
+
+  .profile-content {
+    display: flex; 
+    flex-direction: row; 
+    gap: 10rem; 
+  }
+
+  .profile-title {
+    display: flex;
+    flex-direction: row;
+    gap: 60rem;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
   
   /* tabs */
@@ -127,6 +145,14 @@
      margin-bottom: 10px;
   }
 
+  .row-inputs {
+    width: 120%;
+    margin-right: 30px;
+  }
+
+  .row-inputs input {
+     margin-bottom: 10px;
+  }
   .text-details {
     margin-bottom:20px;
   }
@@ -138,28 +164,19 @@
     @apply flex flex-row;
   }
 
-  /* .rented {
-    box-shadow: 0px 0px 2px #999999;
+  .user-modal {
+    @apply w-[1000px] px-16 py-10 bg-white rounded-md;
   }
   
-  .book-group {
-    @apply flex flex-col gap-1;
+  .user-modal form {
+    @apply flex flex-col gap-5;
   }
   
-  .card-heading {
-    @apply flex items-center;
+  .user-modal .line {
+    @apply h-[1px] bg-black my-7 opacity-10 rounded-md;
   }
   
-  .card-heading > p:first-of-type {
-    @apply font-semibold text-base;
+  .user-modal > form > button {
+    @apply mt-5 w-full;
+    background-color: #e17358;
   }
-  
-  .card-heading > p {
-    @apply font-semibold text-sm;
-  }
-  
-
-  .keywords {
-    @apply font-semibold text-sm opacity-50;
-  }
-   */
