@@ -1,34 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import UserLayout from "../../utils/UserLayout";
 import CauseCard from "../../components/CauseCard";
-import { useMemo } from "react";
+import axiosInstance from "../../configurations/axiosInstance";
+import { routes } from "../../configurations/api";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Donations = () => {
-    const causes = useMemo(
-        () => [
-            {
-                id: 0,
-                title: "Dummy title",
-                zone: "Ukraine",
-                target: "100000",
-                raisedMoney: "5000"
+    const { getAccessTokenSilently } = useAuth0();
+
+    const [causes, setCauses] = useState([]);
+    
+    const getAllCauses = useCallback(async () => {
+        const accessToken = await getAccessTokenSilently();
+        axiosInstance
+          .get(routes.causes.getAll, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
             },
-            {
-                id: 1,
-                title: "Dummy title",
-                zone: "Ukraine",
-                target: "10000",
-                raisedMoney: "5000"
-            },
-            {
-                id: 2,
-                title: "Dummy title",
-                zone: "Ukraine",
-                target: "10000",
-                raisedMoney: "8000"
-            }
-        ], []
-    );
+          })
+          .then(({ data }) => setCauses(data));
+      }, [getAccessTokenSilently]);
+
+    useEffect(() => {
+        getAllCauses();
+      }, [getAllCauses]);
 
     return (
         <UserLayout>
