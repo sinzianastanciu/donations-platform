@@ -3,14 +3,19 @@ import Button from "./Button";
 import ProgressBar from "./ProgressBar";
 import { Link } from "react-router-dom";
 
-const CauseCard = ({id, title, zone, target, raisedMoney, handleClick }) => {
+const CauseCard = ({id, title, zone, target, amountRaised, handleClick }) => {
 
-    const percentage = raisedMoney * 100 / target;
+    var percentage;
+    if ( Math.round(amountRaised * 100 / target ) >= 100) {
+        percentage = 100;
+    } else {
+        percentage = Math.round(amountRaised * 100 / target );
+    }
 
     return (
         <div className="cause-card">
             <div className="cause-progress">
-                <div className="target"><span>{raisedMoney} / {target}$</span></div>
+                <div className="target"><span>{amountRaised} / {target}$</span></div>
                 <ProgressBar bgcolor="#28666E" completed={ percentage }/> 
             </div>
             <div className="cause-details">

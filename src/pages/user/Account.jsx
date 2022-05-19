@@ -20,6 +20,9 @@ const Account = () => {
     { key: "Email", value: "markel.jake@gmail.com" },
     { key: "Phone", value: "+40 754 342 3223" },
     { key: "Address", value: "Street Lake 64" },
+    { key: "City", value: "Bucharest" },
+    { key: "Country", value: "Romania" },
+
   ];
 
   const columns = [
