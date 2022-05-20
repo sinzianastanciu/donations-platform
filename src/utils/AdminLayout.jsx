@@ -12,7 +12,6 @@ const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
 
   const addUser = useCallback(async () => {
-    debugger;
     axiosInstance.post(routes.profile.setupProfile, {
       email: user.email
     });

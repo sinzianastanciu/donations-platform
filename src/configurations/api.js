@@ -6,12 +6,13 @@ const routes = {
         getAll: "cause/getAllCauses",
         getCause: (id) => `cause/getCause/${id}`,
         deleteCause: (id) => `cause/deleteCause/${id}`,
-        updateAmountRaised: (id) => `cause/updateAmountRaised/${id}`
+        updateAmountRaised: (id) => `cause/updateAmountRaised/${id}`,
+        updateCause: (id) => `cause/updateCause/${id}`
     },
     donations: {
         makeDonation: "donation/addDonation",
         getAllDonations: "donation/getAllDonations",
-        myDonations: (id) => `donation/getDonation/${id}`,
+        myDonations: (email) => `donation/getDonation/?email=${email}`,
     },
     profile: {
         setupProfile: "user/registerUser",

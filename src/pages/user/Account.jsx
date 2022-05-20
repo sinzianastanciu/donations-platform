@@ -9,49 +9,14 @@ import { routes } from "../../configurations/api";
 import axiosInstance from "../../configurations/axiosInstance";
 
 const Account = () => {
+  const { getAccessTokenSilently } = useAuth0();
+  const { user } = useAuth0();
   const [openedModal, setOpenedModal] = useState(false);
   const [profile, setProfile] = useState({});
   const [donations, setDonations] = useState([]);
-  const { getAccessTokenSilently } = useAuth0();
-  const { user } = useAuth0();
 
-
-  const getProfile = useCallback(async () => {
-    const accessToken = await getAccessTokenSilently();
-    axiosInstance
-      .get(routes.profile.getProfileForUser(user.email), {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(({ data }) => {
-        setProfile(data);
-      } )
-  }, [getAccessTokenSilently]);
-
-  // const getDonations = () => {
-    
-  //   const profileId = profile.id;
-  //   axiosInstance
-  //     .get(routes.donations.myDonations(profileId), {
-        
-  //     })
-  //     .then(({ data }) => setDonations(data));
-  // };
- 
-  // axiosInstance
-  // .get(routes.profile.getProfileForUser(user.email))
-  // .then(response => {
-  //   console.log(response.data.id)
-  //   setProfile(response.data);
-  //   return axiosInstance.get(routes.donations.myDonations(response.data.id));
-  // })
-  // .then(response => {
-  //   console.log(response.data.id)
-  //   setDonations(response.data);
-  // })
-  
   let profileFields = [];
+
   if (profile.firstName === null) {
     profileFields = [{ key: "Email", value: profile.email }];
   } else {
@@ -68,7 +33,7 @@ const Account = () => {
   const columns = [
     {
       Header: "Cause name",
-      accessor: "causeId",
+      accessor: "title",
     },
     {
       Header: "Amount",
@@ -76,10 +41,22 @@ const Account = () => {
     },
   ];
 
+  const getProfile = useCallback(async () => {
+    const accessToken = await getAccessTokenSilently();
+    axiosInstance
+      .get(routes.profile.getProfileForUser(user.email), {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(({ data }) => {
+        setProfile(data);
+      });
+  }, [getAccessTokenSilently]);
+
   const handleModifyUserData = (form) => {
     (async () => {
       const accessToken = await getAccessTokenSilently();
-      debugger;
       axiosInstance
         .post(routes.profile.updateProfile(profile.id), form, {
           headers: {
@@ -87,14 +64,28 @@ const Account = () => {
           },
         })
         .then(() => {
-          debugger;
-          getProfile()});
+          getProfile();
+        });
     })();
   };
 
+  const getDonations = useCallback(async () => {
+    const accessToken = await getAccessTokenSilently();
+    axiosInstance
+      .get(routes.donations.myDonations(user.email), {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(({ data }) => {
+        setDonations(data);
+      });
+  }, [getAccessTokenSilently]);
+
   useEffect(() => {
     getProfile();
-  }, [getProfile]);
+    getDonations();
+  }, [getProfile, getDonations]);
 
   return (
     <UserLayout>

@@ -52,7 +52,6 @@ const Causes = () => {
   const handleAddCause = (form) => {
     (async () => {
       const accessToken = await getAccessTokenSilently();
-      debugger;
       axiosInstance
         .post(routes.causes.addCause, form, {
           headers: {
@@ -60,11 +59,9 @@ const Causes = () => {
           },
         })
         .then(() => {
-          debugger;
           getAllCauses()});
     })();
   };
-
 
   const [openedModal, setOpenedModal] = useState(false);
   return (
@@ -75,6 +72,7 @@ const Causes = () => {
           setOpenedModal(false);
         }}
         submitForm={handleAddCause}
+        ariaHideApp={false}
       />
       <div className="row-between">
         <h2>{causes.length} Causes</h2>
@@ -82,7 +80,7 @@ const Causes = () => {
           <MdAdd /> Add cause
         </Button>
       </div>
-      <Table data={causes} columns={columns} />
+      <Table data={causes} columns={columns} noHref/>
     </AdminLayout>
   );
 };
