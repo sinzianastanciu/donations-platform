@@ -12,6 +12,7 @@ const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
 
   const addUser = useCallback(async () => {
+    debugger;
     axiosInstance.post(routes.profile.setupProfile, {
       email: user.email
     });
@@ -20,8 +21,9 @@ const AdminLayout = ({ children }) => {
   useEffect(() => {
     if (user && user[authSettings.rolesKey].length === 0) {
       navigate("/");
+      addUser();
     }
-    addUser();
+   
   }, [user, addUser]);
   
   return (

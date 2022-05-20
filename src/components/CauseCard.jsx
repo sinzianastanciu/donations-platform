@@ -26,7 +26,7 @@ const CauseCard = ({id, title, zone, target, amountRaised, handleClick }) => {
                     <h3>{zone}</h3>
                 </div>
                 <Link to={`/causes/${id}`}>
-                    <Button onClick={() => handleClick({ title })}>Details</Button>
+                    <Button onClick={() => handleClick({ id })}>Details</Button>
                 </Link>
              
             </div>

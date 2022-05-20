@@ -5,7 +5,8 @@ const routes = {
         addCause: "cause/addCause",
         getAll: "cause/getAllCauses",
         getCause: (id) => `cause/getCause/${id}`,
-        deleteCause: (id) => `cause/deleteCause/${id}`
+        deleteCause: (id) => `cause/deleteCause/${id}`,
+        updateAmountRaised: (id) => `cause/updateAmountRaised/${id}`
     },
     donations: {
         makeDonation: "donation/addDonation",

@@ -32,22 +32,39 @@ const Causes = () => {
   );
   const { getAccessTokenSilently } = useAuth0();
 
-    const [causes, setCauses] = useState([]);
-    
-    const getAllCauses = useCallback(async () => {
-        const accessToken = await getAccessTokenSilently();
-        axiosInstance
-          .get(routes.causes.getAll, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          })
-          .then(({ data }) => setCauses(data));
-      }, [getAccessTokenSilently]);
+  const [causes, setCauses] = useState([]);
 
-    useEffect(() => {
-        getAllCauses();
-      }, [getAllCauses]);
+  const getAllCauses = useCallback(async () => {
+    const accessToken = await getAccessTokenSilently();
+    axiosInstance
+      .get(routes.causes.getAll, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(({ data }) => setCauses(data));
+  }, [getAccessTokenSilently]);
+
+  useEffect(() => {
+    getAllCauses();
+  }, [getAllCauses]);
+
+  const handleAddCause = (form) => {
+    (async () => {
+      const accessToken = await getAccessTokenSilently();
+      debugger;
+      axiosInstance
+        .post(routes.causes.addCause, form, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then(() => {
+          debugger;
+          getAllCauses()});
+    })();
+  };
+
 
   const [openedModal, setOpenedModal] = useState(false);
   return (
@@ -57,6 +74,7 @@ const Causes = () => {
         closeModal={() => {
           setOpenedModal(false);
         }}
+        submitForm={handleAddCause}
       />
       <div className="row-between">
         <h2>{causes.length} Causes</h2>
