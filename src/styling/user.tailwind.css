@@ -23,7 +23,7 @@
   .profile-title {
     display: flex;
     flex-direction: row;
-    gap: 60rem;
+    gap: 35rem;
   }
 
   .profile {
@@ -32,6 +32,19 @@
     gap: 3rem;
   }
   
+  .profile-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 600px;
+  }
+
+  .profile-message {
+    color:#e17358;
+  }
+  
+  .edit-button {
+    display: flex-end;
+  }
   /* tabs */
   .book-tabs {
     @apply flex gap-5;

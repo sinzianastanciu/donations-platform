@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Input = (props) => {
-    const { contentLabel, ...rest } = props;
+const Input = forwardRef((props, ref) => {
+    const { icon, ...rest } = props;
     return (
-        <label>
-            {contentLabel && <span>{contentLabel}</span>}
-            <input {...rest} type={contentLabel==="Password" ? "password" : "text"} className='input'></input>
-        </label>
+      <label>
+        {icon}
+        <input className={`input`} {...rest} ref={ref} />
+      </label>
     );
-};
+  });
 
 export default Input;

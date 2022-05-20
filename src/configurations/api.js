@@ -15,6 +15,7 @@ const routes = {
     profile: {
         setupProfile: "user/registerUser",
         getProfile: "user/viewUserData",
+        updateProfile: (id) => `user/updateUser/${id}`,
         getProfileForUser: (email) => `user/viewUserData/?email=${email}`,
     },
 }

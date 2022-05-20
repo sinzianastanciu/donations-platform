@@ -11,19 +11,59 @@ import axiosInstance from "../../configurations/axiosInstance";
 const Account = () => {
   const [openedModal, setOpenedModal] = useState(false);
   const [profile, setProfile] = useState({});
-
+  const [donations, setDonations] = useState([]);
   const { getAccessTokenSilently } = useAuth0();
   const { user } = useAuth0();
 
-  const profileFields = [
-    { key: "Name", value: "Jake Markel" },
-    { key: "Email", value: "markel.jake@gmail.com" },
-    { key: "Phone", value: "+40 754 342 3223" },
-    { key: "Address", value: "Street Lake 64" },
-    { key: "City", value: "Bucharest" },
-    { key: "Country", value: "Romania" },
 
-  ];
+  const getProfile = useCallback(async () => {
+    const accessToken = await getAccessTokenSilently();
+    axiosInstance
+      .get(routes.profile.getProfileForUser(user.email), {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(({ data }) => {
+        setProfile(data);
+      } )
+  }, [getAccessTokenSilently]);
+
+  // const getDonations = () => {
+    
+  //   const profileId = profile.id;
+  //   axiosInstance
+  //     .get(routes.donations.myDonations(profileId), {
+        
+  //     })
+  //     .then(({ data }) => setDonations(data));
+  // };
+ 
+  // axiosInstance
+  // .get(routes.profile.getProfileForUser(user.email))
+  // .then(response => {
+  //   console.log(response.data.id)
+  //   setProfile(response.data);
+  //   return axiosInstance.get(routes.donations.myDonations(response.data.id));
+  // })
+  // .then(response => {
+  //   console.log(response.data.id)
+  //   setDonations(response.data);
+  // })
+  
+  let profileFields = [];
+  if (profile.firstName === null) {
+    profileFields = [{ key: "Email", value: profile.email }];
+  } else {
+    profileFields = [
+      { key: "Name", value: profile.firstName + " " + profile.lastName },
+      { key: "Email", value: profile.email },
+      { key: "Phone", value: profile.phoneNumber },
+      { key: "Address", value: profile.address },
+      { key: "City", value: profile.city },
+      { key: "Country", value: profile.country },
+    ];
+  }
 
   const columns = [
     {
@@ -33,38 +73,28 @@ const Account = () => {
     {
       Header: "Amount",
       accessor: "amount",
-    }
+    },
   ];
 
-  const [donations, setDonations] = useState([]);
-
-  const getDonations = useCallback(async () => {
-    const accessToken = await getAccessTokenSilently();
-    axiosInstance
-      .get(routes.donations.getAllDonations, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(({ data }) => setDonations(data));
-  }, [getAccessTokenSilently]);
-
-  //TODO modify db tables to move personal data from donations to user table
-  const getProfile = useCallback(async () => {
-    const accessToken = await getAccessTokenSilently();
-    axiosInstance
-      .get(routes.profile.getProfileForUser(user.email), {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(({ data }) => setProfile(data));
-  }, [getAccessTokenSilently]);
+  const handleModifyUserData = (form) => {
+    (async () => {
+      const accessToken = await getAccessTokenSilently();
+      debugger;
+      axiosInstance
+        .post(routes.profile.updateProfile(profile.id), form, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then(() => {
+          debugger;
+          getProfile()});
+    })();
+  };
 
   useEffect(() => {
-    getDonations();
     getProfile();
-  },[getDonations, getProfile]);
+  }, [getProfile]);
 
   return (
     <UserLayout>
@@ -73,13 +103,22 @@ const Account = () => {
         closeModal={() => {
           setOpenedModal(false);
         }}
+        submitForm={handleModifyUserData}
       />
       <div className="profile">
         <div className="profile-title">
-          <h2>Jake Markel</h2>
-          <Button onClick={() => setOpenedModal(true)}>
-             Edit
-          </Button>
+          <div className="profile-name">
+            {profile.firstName !== null ? (
+              profile.firstName + " " + profile.lastName
+            ) : (
+              <div className="profile-message">
+                Please complete personal data.
+              </div>
+            )}
+          </div>
+          <div className="edit-button">
+            <Button onClick={() => setOpenedModal(true)}>Edit</Button>
+          </div>
         </div>
         <div className="profile-content">
           <Section title={"Profile Details"} fields={profileFields} />
