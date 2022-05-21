@@ -40,7 +40,7 @@ const Account = () => {
       accessor: "cause_title",
     },
     {
-      Header: "Amount",
+      Header: "Amount ($)",
       accessor: "amount",
     },
   ];
