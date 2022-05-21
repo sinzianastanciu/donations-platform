@@ -20,8 +20,12 @@ const CausesTable = () => {
         accessor: "zone",
       },
       {
-        Header: "Target sum to raise",
+        Header: "Target sum to raise ($)",
         accessor: "target",
+      },
+      {
+        Header: "Amount raised ($)",
+        accessor: "amountRaised",
       },
       {
         Header: "",
