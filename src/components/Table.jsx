@@ -12,7 +12,6 @@ let id = 0;
 const Table = ({ data, columns, noHref }) => {
   const navigate = useNavigate();
 
-  // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
@@ -42,7 +41,6 @@ const Table = ({ data, columns, noHref }) => {
     getAllCauses();
   }, [getAllCauses]);
 
- // const [id, setId] = useState(0);
   const handleClick = (e) => {
     id = e;
   }
@@ -64,7 +62,6 @@ const Table = ({ data, columns, noHref }) => {
   };
 
   const [openedModal, setOpenedModal] = useState(false);
-  // Render the UI for your table
   return (
     <div>
       <CauseModal

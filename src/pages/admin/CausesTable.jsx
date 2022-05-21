@@ -8,7 +8,7 @@ import axiosInstance from "../../configurations/axiosInstance";
 import { routes } from "../../configurations/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Causes = () => {
+const CausesTable = () => {
   const columns = useMemo(
     () => [
       {
@@ -85,4 +85,4 @@ const Causes = () => {
   );
 };
 
-export default Causes;
+export default CausesTable;

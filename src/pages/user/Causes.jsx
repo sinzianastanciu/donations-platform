@@ -5,7 +5,7 @@ import axiosInstance from "../../configurations/axiosInstance";
 import { routes } from "../../configurations/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Donations = () => {
+const Causes = () => {
     const { getAccessTokenSilently } = useAuth0();
 
     const [causes, setCauses] = useState([]);
@@ -37,4 +37,4 @@ const Donations = () => {
 };
 
 
-export default Donations;
+export default Causes;
