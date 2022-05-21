@@ -13,6 +13,7 @@ const DonateModal = ({ modalIsOpen, closeModal, submitForm }) => {
     const data = getValues();
     submitForm({ ...data});
     closeModal();
+    window.location.reload(false);
   };
 
   return (

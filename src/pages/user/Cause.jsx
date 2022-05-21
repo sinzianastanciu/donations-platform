@@ -13,6 +13,7 @@ const Cause = () => {
     const { id } = useParams()
     const { getAccessTokenSilently } = useAuth0();
     const [cause, setCause] = useState([]);
+    const [isDonationDisabled, setDonationDisabled] = useState(false);
     
     const getCause = useCallback(async () => {
         const accessToken = await getAccessTokenSilently();
@@ -22,7 +23,10 @@ const Cause = () => {
               Authorization: `Bearer ${accessToken}`,
             },
           })
-          .then(({ data }) => setCause(data));
+          .then(({ data }) => {
+            setCause(data);
+            setDonationDisabled(data.amountRaised >= data.target);
+          });
       }, [getAccessTokenSilently]);
 
     useEffect(() => {
@@ -41,7 +45,6 @@ const Cause = () => {
         })();
       };
     
-
         
     const [openedModal, setOpenedModal] = useState(false);
     return (
@@ -64,7 +67,7 @@ const Cause = () => {
                     {cause.summary}
                 </div>
                 <div className="donate-btn">
-                    <Button  onClick={() => setOpenedModal(true)}> Donate for this cause </Button>
+                    <Button disable={isDonationDisabled} onClick={() => setOpenedModal(true)}> Donate for this cause </Button>
                 </div>
             </div>
             <img className="cause-image" src={cause.image} />

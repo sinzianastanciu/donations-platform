@@ -1,8 +1,8 @@
 import React from "react";
 
-const Button = ({ children, ...rest }) => {
+const Button = ({ children, disable, ...rest }) => {
   return (
-    <button className="button" {...rest}>
+    <button disabled={disable} className="button" {...rest}>
       {children}
     </button>
   );
