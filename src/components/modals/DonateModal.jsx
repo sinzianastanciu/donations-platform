@@ -4,17 +4,30 @@ import { MdOutlineClose } from "react-icons/md";
 import Button from "../Button";
 import Input from "../Input";
 import { useForm } from "react-hook-form";
+import axiosInstance from "../../configurations/axiosInstance";
+import { routes } from "../../configurations/api";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const DonateModal = ({ modalIsOpen, closeModal, submitForm }) => {
+const DonateModal = ({ modalIsOpen, closeModal, submitForm, userId, causeId}) => {
 
   const { register, handleSubmit, getValues } = useForm();
 
   const handleClick = async () => {
     const data = getValues();
+    console.log(data)
     submitForm({ ...data});
+    makeDonation(data);
     closeModal();
     window.location.reload(false);
   };
+
+  const makeDonation = (data) => {
+      axiosInstance
+        .post(routes.donations.makeDonation, {
+            amount: data.amountRaised,
+            causeId: causeId,
+            userId: userId
+        })};
 
   return (
     <Modal

@@ -14,7 +14,9 @@ const Cause = () => {
     const { getAccessTokenSilently } = useAuth0();
     const [cause, setCause] = useState([]);
     const [isDonationDisabled, setDonationDisabled] = useState(false);
-    
+    const { user } = useAuth0(); 
+    const [profile, setProfile] = useState({});
+
     const getCause = useCallback(async () => {
         const accessToken = await getAccessTokenSilently();
         axiosInstance
@@ -29,10 +31,6 @@ const Cause = () => {
           });
       }, [getAccessTokenSilently]);
 
-    useEffect(() => {
-        getCause();
-      }, [getCause]);
-
     const handleMakeDonation = (form) => {
         (async () => {
           const accessToken = await getAccessTokenSilently();
@@ -44,7 +42,27 @@ const Cause = () => {
             })
         })();
       };
-    
+
+      const getProfile = useCallback(async () => {
+        const accessToken = await getAccessTokenSilently();
+        axiosInstance
+          .get(routes.profile.getProfileForUser(user.email), {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then(({ data }) => {
+            setProfile(data);
+          });
+      }, [getAccessTokenSilently]);
+
+      useEffect(() => {
+        getCause();
+        getProfile();
+      }, [getCause, getProfile]);
+
+
+     
         
     const [openedModal, setOpenedModal] = useState(false);
     return (
@@ -53,7 +71,10 @@ const Cause = () => {
                 modalIsOpen={openedModal}
                 closeModal={() => {
                 setOpenedModal(false);
-            }}
+               }
+              }
+              userId = {profile.id}
+              causeId = {id}
             submitForm={handleMakeDonation}
             />
             <div className="cause-content">
