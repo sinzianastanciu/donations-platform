@@ -14,8 +14,12 @@ const Account = () => {
   const [openedModal, setOpenedModal] = useState(false);
   const [profile, setProfile] = useState({});
   const [donations, setDonations] = useState([]);
+  const [causes, setCauses] = useState([]);
+ 
 
   let profileFields = [];
+  let pastDonations = [];
+
 
   if (profile.firstName === null) {
     profileFields = [{ key: "Email", value: profile.email }];
@@ -33,7 +37,7 @@ const Account = () => {
   const columns = [
     {
       Header: "Cause name",
-      accessor: "title",
+      accessor: "cause_title",
     },
     {
       Header: "Amount",
@@ -82,10 +86,39 @@ const Account = () => {
       });
   }, [getAccessTokenSilently]);
 
+  const getCauses = useCallback(async () => {
+    const accessToken = await getAccessTokenSilently();
+    axiosInstance
+      .get(routes.causes.getAll, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(({ data }) => {
+        setCauses(data);
+      });
+  }, [getAccessTokenSilently]);
+
   useEffect(() => {
     getProfile();
     getDonations();
-  }, [getProfile, getDonations]);
+    getCauses();
+  }, [getProfile, getDonations, getCauses]);
+  
+  
+  const getPastDonations = useCallback (async () => {
+      donations.forEach((donation) => {
+        causes.forEach((cause) => {
+            if(donation.causeId === cause.id) {
+                let pastDonation = {"cause_title": cause.title, "amount": donation.amount};
+                pastDonations.push(pastDonation);
+            }
+        })
+      })
+      console.log(pastDonations)
+  }, [pastDonations]);
+
+  getPastDonations(); 
 
   return (
     <UserLayout>
@@ -115,7 +148,7 @@ const Account = () => {
           <Section title={"Profile Details"} fields={profileFields} />
           <div>
             <p className="section-title">Past Donations</p>
-            <Table data={donations} columns={columns} noHref />
+            <Table data={pastDonations} columns={columns} noHref />
           </div>
         </div>
       </div>
