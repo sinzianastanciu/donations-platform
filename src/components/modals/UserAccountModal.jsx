@@ -32,14 +32,14 @@ const UserAccountModal = ({ isModalOpen, closeModal, submitForm }) => {
         <form>
           <div className="modal-fields">
             <div className="row-inputs">
-              <Input label="Phone" placeholder="Phone number" {...register("phoneNumber")}></Input>
               <Input label="FirstName" placeholder="First Name" {...register("firstName")}></Input>
               <Input label="LastName" placeholder="Last Name" {...register("lastName")}></Input>
+              <Input label="Phone" placeholder="Phone number" {...register("phoneNumber")}></Input>
             </div>
             <div className="row-inputs">
+              <Input label="Address" placeholder="Address" {...register("address")}></Input>
               <Input label="City" placeholder="City" {...register("city")}></Input>
               <Input label="Country" placeholder="Country" {...register("country")}></Input>
-              <Input label="Address" placeholder="Address" {...register("address")}></Input>
             </div>
           </div>
           <Button type="button" onClick={handleSubmit(handleClick)}>
