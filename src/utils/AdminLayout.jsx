@@ -20,9 +20,8 @@ const AdminLayout = ({ children }) => {
   useEffect(() => {
     if (user && user[authSettings.rolesKey].length === 0) {
       navigate("/");
-      addUser();
     }
-   
+    addUser();
   }, [user, addUser]);
   
   return (

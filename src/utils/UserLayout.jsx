@@ -20,9 +20,8 @@ const UserLayout = ({ children }) => {
   useEffect(() => {
     if (user && user[authSettings.rolesKey].length === 1) {
       navigate("/causes");
-      addUser();
     }
-   
+    addUser();
   }, [user, addUser]);
 
   return (
